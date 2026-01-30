@@ -38,6 +38,7 @@
 # You will only compute/compare priorities (ints).
 # For peek() and pop(), return (item, priority) as a tuple.
 
+
 class MinHeap:
     def __init__(self):
         # We'll store elements as tuples: (priority, item)
@@ -52,8 +53,10 @@ class MinHeap:
     def peek(self):
         # TODO: Return (priority, item) but do NOT remove
         # If empty, return None (or raise an error)
-        pass
-
+        if not self.data:
+            return None
+        return self.data[0] #min / 1st item
+        
     def add(self, priority, item):
         # TODO: Add (priority, item) to end of list
         # Then bubble it UP into correct position
