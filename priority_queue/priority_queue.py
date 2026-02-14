@@ -53,27 +53,34 @@ class MinHeap:
     def peek(self):
         # TODO: Return (priority, item) but do NOT remove
         # If empty, return None (or raise an error)
-        if not self.data:
-            return None
-        return self.data[0] #min / 1st item
+        if self.data:
+            return self.data[0] # 1st item of min heap
+        return None
         
     def add(self, priority, item):
         # TODO: Add (priority, item) to end of list
         # Then bubble it UP into correct position
-        pass
-
+        self.data.append((priority, item))
+        self._bubble_up(len(self.data) -1) # starting from front
+        
     def pop_min(self):
         # TODO: Remove and return the smallest element (priority, item)
         # Steps:
+        if self.data:
         # 1) swap root with last element
-        # 2) pop last element (former root)
+            self.data[0], self.data[-1] = self.data[-1], self.data[0] 
+        # 2) pop/remove last element (former root)
+            priority, item = self.data.pop() 
         # 3) bubble DOWN new root
-        pass
+            self._bubble_down(0) # new root index 
+            return (item, priority)
+        return None
 
     def _bubble_up(self, idx):
         # TODO: Implement
         # Keep swapping this node with its parent while it has a smaller priority.
-        # parent index = (idx - 1) // 2
+        #parent index = (idx - 1) // 2
+        
         # Stop when you reach the root OR parent already has <= priority.
         pass
 
@@ -82,6 +89,12 @@ class MinHeap:
         # left child = 2*idx + 1, right child = 2*idx + 2
         # Find the smaller child, then swap if current priority is bigger.
         # Stop when no children exist OR current is <= both children.
+        #while True:
+        #    left_child = 2*idx + 1
+        #    right_child = 2*idx + 2
+        #    smaller_child = idx
+        #if left_child < len(self.data) and 
+            
         pass
 
 
