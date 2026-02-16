@@ -79,24 +79,52 @@ class MinHeap:
     def _bubble_up(self, idx):
         # TODO: Implement
         # Keep swapping this node with its parent while it has a smaller priority.
-        #parent index = (idx - 1) // 2
-        
         # Stop when you reach the root OR parent already has <= priority.
-        pass
+        # When you add an item, append it to the end of the list, then "bubble up"
+        # by swapping it with its parent
+        
+        while idx > 0:
+            # parent index  
+            parent = (idx - 1) // 2
+            
+            # node smaller than parent?
+            if self.data[idx][0] >= self.data[parent][0]:
+                return
+            # swap smallest and parent
+            self.data[idx], self.data[parent] = self.data[parent], self.data[idx]
+            idx = parent # go back to parent index, repeat
+
 
     def _bubble_down(self, idx):
         # Keep swapping this node downward until the heap property is restored.
-        # left child = 2*idx + 1, right child = 2*idx + 2
         # Find the smaller child, then swap if current priority is bigger.
-        # Stop when no children exist OR current is <= both children.
-        #while True:
-        #    left_child = 2*idx + 1
-        #    right_child = 2*idx + 2
-        #    smaller_child = idx
-        #if left_child < len(self.data) and 
+        # Stop when no children exist OR current is <= both children.    
+        
+        while True:
+            # index
+            smaller = idx
+            left = (2 * idx) + 1
+            right = (2 * idx) + 2
             
-        pass
+            # is there a left? yes, compare value.
+            if left < len(self.data) and self.data[left][0] < self.data[smaller][0]:
+                smaller = left
+                
+            # is there a right? yes, compare value.
+            if right < len(self.data) and self.data[right][0] < self.data[smaller][0]:
+                smaller = right
+                
+            if smaller != idx:
+                # swap!
+                self.data[idx], self.data[smaller] = self.data[smaller], self.data[idx]
+                idx = smaller
+            
+# When you pop the minimum item, you remove and return the item at index 0.
+# Then move the last element to index 0 and "bubble down" by swapping with the smaller child
+# until the heap property is restored.
 
+
+        
 
 # Once you have a min heap, the priority queue is pretty straightforward. 
 # Make sure you understand what it is doing
