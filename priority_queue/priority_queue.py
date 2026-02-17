@@ -73,7 +73,7 @@ class MinHeap:
             priority, item = self.data.pop() 
         # 3) bubble DOWN new root
             self._bubble_down(0) # new root index 
-            return (item, priority)
+            return (priority, item)
         return None
 
     def _bubble_up(self, idx):
@@ -99,9 +99,10 @@ class MinHeap:
         # Keep swapping this node downward until the heap property is restored.
         # Find the smaller child, then swap if current priority is bigger.
         # Stop when no children exist OR current is <= both children.    
+        swapped = True
         
-        while True:
-            # index
+        while swapped:
+            swapped = False 
             smaller = idx
             left = (2 * idx) + 1
             right = (2 * idx) + 2
@@ -118,6 +119,8 @@ class MinHeap:
                 # swap!
                 self.data[idx], self.data[smaller] = self.data[smaller], self.data[idx]
                 idx = smaller
+                swapped = True
+        
             
 # When you pop the minimum item, you remove and return the item at index 0.
 # Then move the last element to index 0 and "bubble down" by swapping with the smaller child
